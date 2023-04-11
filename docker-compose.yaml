@@ -48,29 +48,29 @@ services:
       - monitoring
       
   cadvisor:
-      image: gcr.io/cadvisor/cadvisor-amd64:v0.47.0
-      volumes:
-          - /:/rootfs:ro
-          - /var/run:/var/run:ro
-          - /sys:/sys:ro
-          - /var/lib/docker/:/var/lib/docker:ro
-          - /dev/disk/:/dev/disk:ro
-      networks:
-          - monitoring
+    image: gcr.io/cadvisor/cadvisor-amd64:v0.47.0
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    networks:
+      - monitoring
 
   prometheus:
-      image: prom/prometheus:v2.7.1
-      ports:
-          - "9090:9090"
-      volumes:
-          - ./prometheus:/app.cfg
-      networks:
-          - monitoring
-      command: >-
-          --config.file=/app.cfg/prometheus.yml
-          --storage.tsdb.path=/prometheus
-          --web.console.libraries=/usr/share/prometheus/console_libraries
-          --web.console.templates=/usr/share/prometheus/consoles
+    image: prom/prometheus:v2.7.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/app.cfg
+    networks:
+      - monitoring
+    command: >-
+      --config.file=/app.cfg/prometheus.yml
+      --storage.tsdb.path=/prometheus
+      --web.console.libraries=/usr/share/prometheus/console_libraries
+      --web.console.templates=/usr/share/prometheus/consoles
 
 networks:
   app:
