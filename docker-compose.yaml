@@ -2,17 +2,16 @@
 version: '3.8'
 
 services:
-  # # for tests. This container send logs to promtail
-  # nginx-app:
-  #   container_name: nginx-app
-  #   image: nginx
-  #   labels:
-  #     logging: "promtail"
-  #     logging_jobname: "containerlogs"
-  #   ports:
-  #     - 8081:80
-  #   networks:
-  #     - monitoring
+  nginx-app:
+    container_name: nginx-app
+    image: nginx
+    labels:
+      logging: "promtail"
+      logging_jobname: "containerlogs"
+    ports:
+      - 8081:80
+    networks:
+      - minitoring
 
   grafana:
     image: grafana/grafana:9.3.6
