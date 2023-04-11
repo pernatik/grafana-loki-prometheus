@@ -1,17 +1,17 @@
-# It works well!
 version: '3.8'
 
 services:
-  nginx-app:
-    container_name: nginx-app
-    image: nginx
-    labels:
-      logging: "promtail"
-      logging_jobname: "containerlogs"
-    ports:
-      - 8081:80
-    networks:
-      - minitoring
+  # # test app
+  # nginx-app:
+  #   container_name: nginx-app
+  #   image: nginx
+  #   labels:
+  #     logging: "promtail"
+  #     logging_jobname: "containerlogs"
+  #   ports:
+  #     - 8081:80
+  #   networks:
+  #     - monitoring
 
   grafana:
     image: grafana/grafana:9.3.6
