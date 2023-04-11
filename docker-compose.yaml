@@ -1,3 +1,4 @@
+# It works well!
 version: '3.8'
 
 services:
@@ -45,6 +46,31 @@ services:
       - loki
     networks:
       - app
+
+  cadvisor:
+      image: gcr.io/cadvisor/cadvisor-amd64:v0.47.0
+      volumes:
+          - /:/rootfs:ro
+          - /var/run:/var/run:ro
+          - /sys:/sys:ro
+          - /var/lib/docker/:/var/lib/docker:ro
+          - /dev/disk/:/dev/disk:ro
+      networks:
+          - prometheus-cadvisor
+
+  prometheus:
+      image: prom/prometheus:v2.7.1
+      ports:
+          - "9090:9090"
+      volumes:
+          - ./prometheus:/app.cfg
+      networks:
+          - app
+      command: >-
+          --config.file=/app.cfg/prometheus.yml
+          --storage.tsdb.path=/prometheus
+          --web.console.libraries=/usr/share/prometheus/console_libraries
+          --web.console.templates=/usr/share/prometheus/consoles
 
 networks:
   app:
