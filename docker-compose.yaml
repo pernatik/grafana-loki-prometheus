@@ -19,6 +19,7 @@ services:
       - 3000:3000
     volumes:
       - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
