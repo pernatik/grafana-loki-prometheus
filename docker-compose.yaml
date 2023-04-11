@@ -73,5 +73,5 @@ services:
       --web.console.templates=/usr/share/prometheus/consoles
 
 networks:
-  app:
+  world:
     name: monitoring
