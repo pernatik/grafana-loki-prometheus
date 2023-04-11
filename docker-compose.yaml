@@ -11,7 +11,7 @@ services:
     ports:
       - 8081:80
     networks:
-      - app
+      - minitoring
 
   grafana:
     image: grafana/grafana:9.3.6
@@ -24,7 +24,7 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     networks:
-      - app
+      - minitoring
 
   loki:
     image: grafana/loki:2.7.4
@@ -32,7 +32,7 @@ services:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
     networks:
-      - app
+      - minitoring
 
   promtail:
     image:  grafana/promtail:2.7.4
@@ -45,7 +45,7 @@ services:
     depends_on:
       - loki
     networks:
-      - app
+      - minitoring
 
   cadvisor:
       image: gcr.io/cadvisor/cadvisor-amd64:v0.47.0
@@ -56,7 +56,7 @@ services:
           - /var/lib/docker/:/var/lib/docker:ro
           - /dev/disk/:/dev/disk:ro
       networks:
-          - app
+          - minitoring
 
   prometheus:
       image: prom/prometheus:v2.7.1
@@ -65,7 +65,7 @@ services:
       volumes:
           - ./prometheus:/app.cfg
       networks:
-          - app
+          - minitoring
       command: >-
           --config.file=/app.cfg/prometheus.yml
           --storage.tsdb.path=/prometheus
@@ -74,4 +74,4 @@ services:
 
 networks:
   app:
-    name: app
+    name: minitoring
