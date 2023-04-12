@@ -196,7 +196,7 @@
         "prettifyLogMessage": false,
         "showCommonLabels": false,
         "showLabels": false,
-        "showTime": false,
+        "showTime": true,
         "sortOrder": "Descending",
         "wrapLogMessage": false
       },
@@ -1162,7 +1162,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -1193,6 +1193,6 @@
   "timezone": "browser",
   "title": "Momostore.fun monitoring",
   "uid": "4dMaCsRZz",
-  "version": 12,
+  "version": 15,
   "weekStart": ""
 }
